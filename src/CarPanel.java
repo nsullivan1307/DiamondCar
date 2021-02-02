@@ -9,19 +9,14 @@ import java.awt.*;
 public class CarPanel extends JPanel
 {
     public final int X = 4, Y = 15;
-    private Car[][] carsRight = new Car[X][Y];
-    private Car[][] carsDown = new Car[X][Y];
-    private Car[][] carsLeft = new Car[X][Y];
-    private Car[][] carsUp = new Car[X][Y];
-    public static final Dimension SCREENSIZE = Toolkit.getDefaultToolkit().getScreenSize();
-    public static final int WIDTH = (int) SCREENSIZE.getWidth(), HEIGHT = (int) SCREENSIZE.getHeight();
-    private int SIZE = HEIGHT/20;
-    private int[] x = {0, SIZE/2, SIZE, SIZE/2};
-    private int[] y = {SIZE/2, 0, SIZE/2, SIZE};
-    private int n = SIZE*7;
-    private int xPos = 0*SIZE;
-    private int yPos = 0*SIZE;
-    private int space = SIZE*2;
+    private final Car[][] carsRight = new Car[X][Y];
+    private final Car[][] carsDown = new Car[X][Y];
+    private final Car[][] carsLeft = new Car[X][Y];
+    private final Car[][] carsUp = new Car[X][Y];
+    public static final Dimension SCREEN = Toolkit.getDefaultToolkit().getScreenSize();
+    public static final int HEIGHT = (int) SCREEN.getHeight();
+    private final int SIZE = HEIGHT/20;
+
     public CarPanel()
     {
         setBackground(Color.white);
@@ -30,17 +25,23 @@ public class CarPanel extends JPanel
         {
             for (int j  = 0; j < Y; j++)
             {
+                int[] x = {0, SIZE / 2, SIZE, SIZE / 2};
+                int[] y = {SIZE / 2, 0, SIZE / 2, SIZE};
                 carsRight[i][j] = new Car(x, y, 4);
                 carsDown[i][j] = new Car(x, y, 4);
                 carsLeft[i][j] = new Car(x, y, 4);
                 carsUp[i][j] = new Car(x, y, 4);
-                carsRight[i][j].setPosition(xPos+space*j-n, yPos+space*i+SIZE*1);
+                int n = SIZE * 7;
+                int xPos = 0;
+                int yPos = 0;
+                int space = SIZE * 2;
+                carsRight[i][j].setPosition(xPos + space * j - n, yPos + space * i + SIZE);
                 carsRight[i][j].setStep(1, 0);
-                carsDown[i][j].setPosition(xPos+space*i+SIZE*2, yPos+SIZE*0+space*j-n);
+                carsDown[i][j].setPosition(xPos + space * i + SIZE*2, yPos + space * j - n);
                 carsDown[i][j].setStep(0, 1);
-                carsLeft[i][j].setPosition(xPos+SIZE*9-space*j+n, yPos+space*i+SIZE*2);
+                carsLeft[i][j].setPosition(xPos + SIZE*9 - space * j + n, yPos + space * i + SIZE*2);
                 carsLeft[i][j].setStep(-1, 0);
-                carsUp[i][j].setPosition(xPos+space*i+SIZE*1, yPos+SIZE*9-space*j+n);
+                carsUp[i][j].setPosition(xPos + space * i + SIZE, yPos + SIZE*9 - space * j + n);
                 carsUp[i][j].setStep(0, -1);
             }
         }

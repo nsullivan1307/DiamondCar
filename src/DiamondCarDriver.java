@@ -1,4 +1,3 @@
-import java.awt.*;
 import javax.swing.*;
 /**
  * Driver class containing main() function.
